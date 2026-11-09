@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    background: #fff;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#gallery-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 1920px;
+    height: 8077.9196px;
+
+    transform-origin: top left;
+
+    /* BACKGROUND IMAGE */
+    background-image: url("assets/background.jpeg");
+    background-size: 100% 100%;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+/* All three layers occupy the same artboard */
+
+#artwork-layer,
+#button-layer,
+#information-layer {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 8077.9196px;
+    pointer-events: none;
+    transform-origin: top left;
+}
+
+/* Artwork images */
+
+.artwork {
+    position: absolute;
+    display: block;
+    object-fit: contain;
+    pointer-events: none;
+
+    transition: filter 0.25s ease;
+    z-index: 10;
+
+    transform-origin: center center;
+}
+
+/* Interactive buttons */
+
+.image-button {
+    position: absolute;
+    display: block;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    z-index: 20;
+}
+
+.image-button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition: filter 0.25s ease;
+}
+
+/* White glow on buttons */
+
+.image-button:hover img,
+.image-button:focus-visible img {
+    filter:
+        drop-shadow(0 0 3px #fff)
+        drop-shadow(0 0 7px #fff)
+        drop-shadow(0 0 13px rgba(255,255,255,0.95));
+}
+
+/* White glow on highlighted artworks */
+
+.artwork.highlighted {
+    filter:
+        brightness(1.3)
+        drop-shadow(0 0 3px #fff)
+        drop-shadow(0 0 7px #fff)
+        drop-shadow(0 0 13px rgba(255,255,255,0.95));
+}
+
+/* Information images */
+
+.information-image {
+    position: absolute;
+    display: none;
+
+    object-fit: contain;
+    pointer-events: none;
+
+    z-index: 30;
+}
+
+.information-image.visible {
+    display: block;
+}
+
+/* Keyboard accessibility */
+
+.image-button:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
